@@ -94,12 +94,25 @@
         left: 0;
         right: 0;
         bottom: 0;
+        height: 100vh;
+        /* Fallback for browsers that don't support dvh */
+        height: 100dvh;
         background: var(--color-primary);
         flex-direction: column;
-        justify-content: center;
-        gap: var(--space-2xl);
+        justify-content: flex-start;
+        /* Changed from center to allow scrolling from top */
+        padding-top: calc(var(--navbar-height) + 2rem);
+        /* Ensure content starts below header */
+        padding-bottom: 2rem;
+        gap: var(--space-xl);
         transform: translateX(100%);
         transition: transform var(--transition-base);
+        overflow-y: auto;
+        /* Allow scrolling if content is tall */
+        overscroll-behavior: contain;
+        /* Prevent body scroll when menu is open */
+        z-index: 998;
+        /* Below the header but above content */
     }
 
     .links.open {
@@ -107,11 +120,16 @@
     }
 
     .link {
-        font-size: 1.3rem;
+        font-size: 1.5rem;
+        display: block;
+        padding: 0.5rem 0;
     }
 
     .hamburger {
         display: flex;
+        position: relative;
+        z-index: 1001;
+        /* Ensure button stays above the menu */
     }
 
     .desktopCta {
@@ -120,6 +138,6 @@
 
     .mobileCta {
         display: block;
-        margin-top: var(--space-lg);
+        margin-top: var(--space-md);
     }
 }
