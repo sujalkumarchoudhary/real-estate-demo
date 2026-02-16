@@ -1,0 +1,125 @@
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    height: var(--navbar-height);
+    transition: all var(--transition-base);
+    background: transparent;
+}
+
+.navbar.scrolled {
+    background: rgba(10, 22, 40, 0.95);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 2px 20px rgba(0, 0, 0, 0.2);
+}
+
+.inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 100%;
+}
+
+.logo {
+    font-family: var(--font-heading);
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+    z-index: 1001;
+}
+
+.logoIcon {
+    color: var(--color-accent);
+    font-size: 1.2rem;
+}
+
+.links {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2xl);
+}
+
+.link {
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.85);
+    transition: color var(--transition-fast);
+    position: relative;
+}
+
+.link::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: var(--color-accent);
+    transition: width var(--transition-base);
+}
+
+.link:hover {
+    color: var(--color-accent);
+}
+
+.link:hover::after {
+    width: 100%;
+}
+
+.desktopCta {
+    font-size: 0.85rem;
+    padding: 0.7rem 1.5rem;
+}
+
+.hamburger {
+    display: none;
+    color: #fff;
+    z-index: 1001;
+}
+
+.mobileCta {
+    display: none;
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+    .links {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: var(--color-primary);
+        flex-direction: column;
+        justify-content: center;
+        gap: var(--space-2xl);
+        transform: translateX(100%);
+        transition: transform var(--transition-base);
+    }
+
+    .links.open {
+        transform: translateX(0);
+    }
+
+    .link {
+        font-size: 1.3rem;
+    }
+
+    .hamburger {
+        display: flex;
+    }
+
+    .desktopCta {
+        display: none;
+    }
+
+    .mobileCta {
+        display: block;
+        margin-top: var(--space-lg);
+    }
+}
